@@ -1,0 +1,19 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "test suite for woad.",
+  "main": "test.js",
+  "scripts": {
+    "test": "test.bat",
+    "start": "test.bat"
+  },
+  "keywords": [
+    "test"
+  ],
+  "author": "kelvinm <kelvin.r.martin@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "unit.js": "^2.0.0"
+  },
+  "devDependencies": {}
+}

@@ -1,0 +1,20 @@
+{
+  "name": "woad",
+  "version": "1.0.0",
+  "description": "Yet another node logger.",
+  "main": "woad.js",
+  "scripts": {
+    "test": ".\\test\\test.bat",
+    "start": ".\\test\\test.bat"
+  },
+  "keywords": [
+    "logger",
+    "recorder"
+  ],
+  "author": "kelvinm <kelvin.r.martin@gmail.com>",
+  "license": "MIT",
+  "directories": {
+    "example": "examples",
+    "test": "test"
+  }
+}

@@ -1,0 +1,6 @@
+snippet.js
+TODO.txt
+log.txt
+/node_modules
+/test/node_modules
+/test/*.txt
