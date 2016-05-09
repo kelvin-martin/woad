@@ -16,5 +16,13 @@
   "directories": {
     "example": "examples",
     "test": "test"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kelvin-martin/woad.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kelvin-martin/woad/issues"
+  },
+  "homepage": "https://github.com/kelvin-martin/woad#readme"
 }

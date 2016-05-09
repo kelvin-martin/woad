@@ -38,23 +38,27 @@ const default_options = {
 	'callback': default_handler
 };
 
+// Format a date string in the form: YY-MM-DD HH:MM:SS.
 function format_date(date) {
 	return date.toISOString()
-			.replace(/T/, ' ')
-			.replace(/\..+/, '') + ' ';	
+		.replace(/T/, ' ')
+		.replace(/\..+/, '') + ' ';	
 }
 
+// Format a time string in the form: HH:MM:SS.
 function format_time(date) {
 	return ('0' + date.getHours()).slice(-2) + ':' +
-			('0' + date.getMinutes()).slice(-2) + ':' +
-			('0' + date.getSeconds()).slice(-2) + '.' +
-			('00' + date.getMilliseconds()).slice(-3) + ' ';
+		('0' + date.getMinutes()).slice(-2) + ':' +
+		('0' + date.getSeconds()).slice(-2) + '.' +
+		('00' + date.getMilliseconds()).slice(-3) + ' ';
 }
 
+// Returns level option as a string i.e.'TRACE'.
 function format_level(lvl) {
 	return (levels[lvl]);
 }
 
+// Returns an index of the named logged file or -1 if not found
 function get_index(name) {
 	var result = -1;
 	for (var index = 0; index < log_options.length; index++) {
@@ -68,6 +72,8 @@ function get_index(name) {
 	return result;
 }
 
+// Creates a sink for log messages.
+// options is a set of configuration settings
 module.exports.create = function(options) {
 	var index = log_options.length;
 	if (options !== undefined) {
@@ -123,6 +129,7 @@ module.exports.create = function(options) {
 	return log_options[index].name;
 };
 
+// Deletes a registered sink.
 module.exports.delete = function(name) {
 	if (name !== undefined) {
 		assert.equal(typeof (name), 'string',
@@ -134,6 +141,7 @@ module.exports.delete = function(name) {
 	}
 };
 
+// Updates the current message level for a sink.
 module.exports.setlevel = function(name, level) {
 	if (name !== undefined) {
 		assert.equal(typeof (name), 'string',
@@ -149,6 +157,8 @@ module.exports.setlevel = function(name, level) {
 	}
 };
 
+// Sets the logging state of a sink or if name
+// is ommited then sets the global logging state.
 function set_logging_state(state, name) {
 	if (name === undefined) {
 		log_state = state;
@@ -162,14 +172,20 @@ function set_logging_state(state, name) {
 	}
 }
 
+// Stops logging for a sink or for all 
+// sinks if name is ommited.
 module.exports.stop = function(name) {
 	set_logging_state(false, name);
 };
 
+// Resumes logging for a sink or for all 
+// sinks if name is ommited.
 module.exports.resume = function(name) {
 	set_logging_state(true, name);
 };
 
+// Logs a message to all registered sinks if the message
+// level is less than or equal to the currently set sink level
 module.exports.log = function(level, message) {
 	if (log_state === false) return;
 	assert.equal(typeof (level), 'number',
