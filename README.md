@@ -37,7 +37,7 @@ module.exports.TRACE = 5;
 ```javascript
 create(options)
 ```
-This creates a sink that the logger uses to record messages. The object passed into __*create()*__ contains all the configuration options for that sink. See 'Configuration object' below for a description of the  options. __*create()*__ returns a string representing the name of the sink registered. This name can be used in calls to __*delete()*__, __*setlevel()*__, __*stop()*__ and __*resume()*__.
+This creates a sink that the logger uses to record messages. The object passed into __*create()*__ contains all the configuration options for that sink. See 'Configuration object' below for a description of the  options. __*create()*__ returns a string representing the name of the sink registered or __*null*__ if the name already exists. The returned name can be used in calls to __*delete()*__, __*setlevel()*__, __*stop()*__ and __*resume()*__.
 ```javascript
 delete(name)
 ```
@@ -83,7 +83,6 @@ const default_options = {
 };
 ```
 A configuration object which contains zero or more of the specified fields is required to register a sink with a call to __*create()*__. If an empty object is passed then all default settings are used. If any of the fields are omitted then the default settings for that field are used.
-
 ```
 'name'         Name (string) used to denote the configured sink. This
                name is returned by create().
@@ -91,18 +90,19 @@ A configuration object which contains zero or more of the specified fields is re
 'encoding'     The encoding (string) used for saving the message to the
                sink. Valid encodings are Node's encoder string.
                e.g. 'ascii', 'utf8', 'hex'  etc.
-'msg_length'   The length of the message recorded. Messages longer
-               than 'msg_length' are truncated.
+'msg_length'   The length (number) of the message recorded. Messages
+               longer than 'msg_length' are truncated. The date, time
+               and level are not taken into account only the message.
 'format'       A format (string) that specifies what information is
                recorded along wth the message. The complete format
                string is 'DTL' which means 'D=date T=time L=level'.
-'level'        The level number to use to filter messages recorded to
+'level'        The level (number) to use to filter messages recorded to
                that sink. level is one of woads level definitions.
                The level for the sink can be changed using setlevel()
 'log_state'    The state (boolean) of the logging for that sink. 
                This state can be set to on (true) or off (false) using
                stop() or resume().
-'callback'     A callback function which is called when a message is
+'callback'     A callback (function) which is called when a message is
                written to the sink. The callback will take a standard
                node error object which will be null if successful or
                error details if an error occured during the write.

@@ -20,11 +20,11 @@ function testFunc() {
 	lg.setlevel(f1, lg.TRACE);
 
 	var count = 0;
-	var timer = setInterval(function(){
-  		lg.error(message);
-  		count++
-  		if (count >= 100) {
-  			clearInterval(timer);
+	var timer = setInterval(function() {
+		lg.error(message);
+		count++
+		if (count >= 100) {
+			clearInterval(timer);
 
 			// test log file exists
 			fs.access(fname, function(err) {
@@ -32,22 +32,21 @@ function testFunc() {
 					test.fail('log file [' + fname + '] does not exist.')
 				}
 
-				// test contents of log file
-				fs.readFile(fname, (err, data) => {
-			  		if (err) {
-			  			test.fail('log file [' + fname + '] reading contents.')
-			  		}
-			  		var m1 = data.toString();
-			  		console.log(m1);
-			  		test
-			  			.string(m1).contains('ERROR')
-			  			.string(m1).contains(':')
-			  			.string(m1).contains(message);
+			// test contents of log file
+			fs.readFile(fname, (err, data) => {
+	  		if (err) {
+	  			test.fail('log file [' + fname + '] reading contents.')
+	  		}
+	  		var m1 = data.toString();
+	  		console.log(m1);
+	  		test
+	  			.string(m1).contains('ERROR')
+	  			.string(m1).contains(':')
+	  			.string(m1).contains(message);
 				});
 			});
-  		}
+		}
 	}, 100 );
-
 }
 
 testFunc();

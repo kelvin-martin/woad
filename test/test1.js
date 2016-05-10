@@ -34,21 +34,21 @@ function testFunc() {
 
 		// test contents of log file
 		fs.readFile(fname, (err, data) => {
-	  		if (err) {
-	  			test.fail('log file [' + fname + '] reading contents.')
-	  		}
-	  		var m1 = data.toString();
-	  		console.log(m1);
-	  		test
-	  			.string(m1).contains('ERROR')
-	  			.string(m1).contains('WARN')
-	  			.string(m1).contains('INFO')
-	  			.string(m1).contains('VERBOSE')
-	  			.string(m1).contains('DEBUG')
-	  			.string(m1).contains('TRACE')
-	  			.string(m1).contains('-')
-	  			.string(m1).contains(':')
-	  			.string(m1).contains(message);
+	  	if (err) {
+	  		test.fail('log file [' + fname + '] reading contents.')
+	  	}
+	  	var m1 = data.toString();
+	  	console.log(m1);
+	  	test
+	  		.string(m1).contains('ERROR')
+	  		.string(m1).contains('WARN')
+	  		.string(m1).contains('INFO')
+	  		.string(m1).contains('VERBOSE')
+	  		.string(m1).contains('DEBUG')
+	  		.string(m1).contains('TRACE')
+	  		.string(m1).contains('-')
+	  		.string(m1).contains(':')
+	  		.string(m1).contains(message);
 		});
 	});
 }
