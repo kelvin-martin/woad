@@ -26,12 +26,12 @@ const lg = require('woad.js');
 ```
 woads's level definitions loosely follow the npm error levels.
 ```javascript
-module.exports.ERROR = 0;
-module.exports.WARN = 1;
-module.exports.INFO = 2;
-module.exports.VERBOSE = 3;
-module.exports.DEBUG = 4;
-module.exports.TRACE = 5;
+ERROR = 0;
+WARN = 1;
+INFO = 2;
+VERBOSE = 3;
+DEBUG = 4;
+TRACE = 5;
 ```
 ### Functions
 ```javascript
@@ -85,7 +85,9 @@ const default_options = {
 A configuration object which contains zero or more of the specified fields is required to register a sink with a call to __*create()*__. If an empty object is passed then all default settings are used. If any of the fields are omitted then the default settings for that field are used.
 ```
 'name'         Name (string) used to denote the configured sink. This
-               name is returned by create().
+               name is returned by create(). If name is 'Console' 
+               (case-insensitive) then the file option is ignored and
+               all logging is output to Node's console.
 'file'         Path (string) of the file that is used for the sink.
 'encoding'     The encoding (string) used for saving the message to the
                sink. Valid encodings are Node's encoder string.

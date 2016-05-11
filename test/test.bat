@@ -12,3 +12,4 @@ node ./test7
 node ./test8
 node ./test9
 node ./test10
+node ./test11

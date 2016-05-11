@@ -207,9 +207,13 @@ module.exports.log = function(level, message) {
 				}
 				if (level <= options.level) {
 					message = message.substring(0, options.msg_length);
-					fs.appendFile(options.file, 
-						dstamp + tstamp + lvl + message + '\n',
-						options.encoding, options.callback);
+					if (options.name.toUpperCase() === 'CONSOLE') {
+						console.log(dstamp + tstamp + lvl + message);
+					} else {
+						fs.appendFile(options.file, 
+							dstamp + tstamp + lvl + message + '\n',
+							options.encoding, options.callback);
+					}	
 				}
 			}
 		}
