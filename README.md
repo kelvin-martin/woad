@@ -1,7 +1,6 @@
 # woad
 Yet another **[Node.js](https://nodejs.org/en/)** logger.
 
-This is a work in progress, no stable release is yet available.
 ### Installation
 Install from **[GitHub](http://github.com)** by downloading the zip file and '*extract all*' into a folder.
 
@@ -85,9 +84,10 @@ const default_options = {
 A configuration object which contains zero or more of the specified fields is required to register a sink with a call to __*create()*__. If an empty object is passed then all default settings are used. If any of the fields are omitted then the default settings for that field are used.
 ```
 'name'         Name (string) used to denote the configured sink. This
-               name is returned by create(). If name is 'Console' 
-               (case-insensitive) then the file option is ignored and
-               all logging is output to Node's console.
+               name is returned by create(). The name string is always
+               changed to its lowercase equivalent. If name is 
+               'console' (case-insensitive) then the file option is 
+               ignored and all logging is output to Node's console.
 'file'         Path (string) of the file that is used for the sink.
 'encoding'     The encoding (string) used for saving the message to the
                sink. Valid encodings are Node's encoder string.

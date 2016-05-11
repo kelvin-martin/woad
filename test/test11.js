@@ -10,11 +10,11 @@ function testFunc() {
 	const fname = './test11.txt';
 	const message = 'Log message';
 
-	var f1 = lg.create({'name': 'Console'});
+	var f1 = lg.create({'name': 'console'});
 
 	// test we have the default log file name from 'create'
 	test
-		.string(f1).is('Console');
+		.string(f1).is('console');
 
 	lg.setlevel(f1, lg.TRACE);
 	lg.error(message);

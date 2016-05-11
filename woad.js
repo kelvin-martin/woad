@@ -86,7 +86,7 @@ module.exports.create = function(options) {
 			if (get_index(options.name) > -1) {
 				return null; // name already exists
 			}
-			log_options[index].name = options.name;
+			log_options[index].name = options.name.toLowerCase();
 		}		
 		if (options.file !== undefined) {
 			assert.equal(typeof (options.file), 'string',
@@ -207,7 +207,7 @@ module.exports.log = function(level, message) {
 				}
 				if (level <= options.level) {
 					message = message.substring(0, options.msg_length);
-					if (options.name.toUpperCase() === 'CONSOLE') {
+					if (options.name === 'console') {
 						console.log(dstamp + tstamp + lvl + message);
 					} else {
 						fs.appendFile(options.file, 
